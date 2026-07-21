@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gregorio Advocacia — Advocacia em Barra Mansa</title>
+<meta name="description" content="Escritório de advocacia em Barra Mansa. Direito Civil, Trabalhista e de Família. Agende sua consulta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background: #F5F2EC; color: #1B2D4F; line-height: 1.65; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; line-height: 1.15; }
+  a { color: #B8943A; text-decoration: none; }
+  a:hover { color: #1B2D4F; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+  /* ---- Nav ---- */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245, 242, 236, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #1B2D4F1F; }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: #1B2D4F; letter-spacing: 0.02em; }
+  .logo span { color: #B8943A; }
+  .nav-links { display: none; gap: 28px; align-items: center; }
+  .nav-links a { color: #1B2D4F; font-size: 0.95rem; font-weight: 500; }
+  .nav-links a:hover { color: #B8943A; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; padding: 13px 26px; font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; border: none; transition: transform .15s ease, box-shadow .15s ease, background .15s ease; }
+  .btn:hover { transform: translateY(-2px); }
+  .btn-primary { background: #B8943A; color: #1B2D4F; box-shadow: 0 4px 14px #B8943A44; }
+  .btn-primary:hover { color: #1B2D4F; box-shadow: 0 8px 22px #B8943A55; }
+  .btn-wa { background: #25D366; color: #fff; box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35); }
+  .btn-wa:hover { color: #fff; box-shadow: 0 8px 22px rgba(37, 211, 102, 0.45); }
+  .btn-nav { padding: 10px 20px; font-size: 0.9rem; }
+
+  /* ---- Hero ---- */
+  .hero { padding: 130px 0 70px; text-align: center; }
+  .hero-eyebrow { display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B8943A; border: 1px solid #B8943A55; border-radius: 999px; padding: 7px 18px; margin-bottom: 24px; }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 700; max-width: 780px; margin: 0 auto 20px; }
+  .hero p { font-size: clamp(1.05rem, 2.5vw, 1.25rem); color: #56628A; max-width: 620px; margin: 0 auto 34px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; margin-bottom: 56px; }
+  .hero-stats { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px 56px; border-top: 1px solid #1B2D4F1F; padding-top: 40px; max-width: 760px; margin: 0 auto; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 700; color: #B8943A; }
+  .stat-label { font-size: 0.9rem; color: #56628A; font-weight: 500; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-1, .fade-2, .fade-3, .fade-4, .fade-5 { animation: fadeUp 0.8s ease both; }
+  .fade-2 { animation-delay: 0.12s; } .fade-3 { animation-delay: 0.24s; }
+  .fade-4 { animation-delay: 0.36s; } .fade-5 { animation-delay: 0.48s; }
+
+  /* ---- Sections ---- */
+  section { padding: 70px 0; }
+  .section-head { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+  .section-head .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B8943A; display: block; margin-bottom: 10px; }
+  .section-head h2 { font-size: clamp(1.8rem, 4.5vw, 2.6rem); font-weight: 700; }
+
+  /* ---- Serviços ---- */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 22px; }
+  .card { background: #FFFFFF; border: 1px solid #1B2D4F1F; border-radius: 10px; padding: 34px 28px; transition: transform .2s ease, box-shadow .2s ease; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 14px 30px #1B2D4F14; }
+  .card-icon { width: 54px; height: 54px; border-radius: 10px; background: #B8943A18; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
+  .card h3 { font-size: 1.3rem; margin-bottom: 10px; }
+  .card p { color: #56628A; font-size: 0.98rem; }
+
+  /* ---- Sobre ---- */
+  .sobre-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+  .sobre-photo { border-radius: 10px; aspect-ratio: 4 / 5; max-width: 420px; width: 100%; margin: 0 auto; background: linear-gradient(160deg, #B8943A26, #B8943A0d); border: 1px solid #1B2D4F1F; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; color: #B8943A; font-weight: 600; font-size: 0.95rem; }
+  .sobre-text .kicker { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #B8943A; display: block; margin-bottom: 10px; }
+  .sobre-text h2 { font-size: clamp(1.8rem, 4.5vw, 2.4rem); margin-bottom: 18px; }
+  .sobre-text p { color: #56628A; margin-bottom: 26px; }
+
+  /* ---- Contato ---- */
+  .contato-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+  .contato-form { background: #FFFFFF; border: 1px solid #1B2D4F1F; border-radius: 10px; padding: 32px 28px; }
+  .contato-form label { display: block; font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+  .contato-form input, .contato-form textarea { width: 100%; border: 1px solid #1B2D4F1F; border-radius: 8px; padding: 12px 14px; font-family: 'DM Sans', sans-serif; font-size: 1rem; color: #1B2D4F; background: #F5F2EC; margin-bottom: 18px; outline: none; transition: border-color .15s ease; }
+  .contato-form input:focus, .contato-form textarea:focus { border-color: #B8943A; }
+  .contato-form textarea { resize: vertical; min-height: 110px; }
+  .contato-info { display: flex; flex-direction: column; gap: 22px; justify-content: center; }
+  .info-item { display: flex; gap: 16px; align-items: flex-start; }
+  .info-icon { width: 44px; height: 44px; flex-shrink: 0; border-radius: 10px; background: #B8943A18; display: flex; align-items: center; justify-content: center; }
+  .info-item strong { display: block; font-size: 0.95rem; }
+  .info-item span { color: #56628A; font-size: 0.95rem; }
+
+  /* ---- Footer ---- */
+  footer { border-top: 1px solid #1B2D4F1F; padding: 34px 0; }
+  .footer-inner { display: flex; flex-direction: column; gap: 10px; align-items: center; text-align: center; font-size: 0.9rem; color: #56628A; }
+  .footer-inner .logo { font-size: 1.1rem; }
+
+  /* ---- WhatsApp flutuante ---- */
+  @keyframes pulseWA { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); } 70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+  .wa-float { position: fixed; right: 22px; bottom: 22px; z-index: 90; width: 60px; height: 60px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; animation: pulseWA 2.2s ease-out infinite; transition: transform .15s ease; }
+  .wa-float:hover { transform: scale(1.08); }
+
+  @media (min-width: 768px) {
+    .nav-links { display: flex; }
+    .hero { padding: 160px 0 90px; }
+    section { padding: 90px 0; }
+    .cards { grid-template-columns: repeat(3, 1fr); }
+    .sobre-grid { grid-template-columns: 5fr 6fr; gap: 64px; }
+    .contato-grid { grid-template-columns: 6fr 5fr; gap: 64px; }
+    .contato-form { padding: 40px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <div class="logo">Gregorio Advocacia<span>.</span></div>
+    <div class="nav-links">
+      <a href="#inicio">Início</a>
+      <a href="#servicos">Áreas de atuação</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a href="#contato" class="btn btn-primary btn-nav">Agendar Consulta</a>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="container">
+    <span class="hero-eyebrow fade-1">Advocacia — Barra Mansa</span>
+    <h1 class="fade-2">Seu direito defendido com experiência</h1>
+    <p class="fade-3">Atuação estratégica e atendimento próximo para proteger o que é seu, com a seriedade que a sua causa merece.</p>
+    <div class="hero-actions fade-4">
+      <a href="#contato" class="btn btn-primary">Agendar Consulta</a>
+      <a href="https://wa.me/555524999352877" target="_blank" rel="noopener" class="btn btn-wa"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> WhatsApp</a>
+    </div>
+    <div class="hero-stats fade-5">
+        <div class="stat"><div class="stat-num">15+</div><div class="stat-label">Anos de experiência</div></div>
+        <div class="stat"><div class="stat-num">800+</div><div class="stat-label">Causas conduzidas</div></div>
+        <div class="stat"><div class="stat-num">1.200+</div><div class="stat-label">Clientes atendidos</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="servicos">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Áreas de atuação</span>
+      <h2>Como podemos defender você</h2>
+    </div>
+    <div class="cards">
+        <div class="card">
+          <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v18M8 21h8M12 6L6 7m6-1l6 1"/><path d="M6 7l-2.5 5a3 3 0 0 0 5 0L6 7zM18 7l-2.5 5a3 3 0 0 0 5 0L18 7z"/></svg></div>
+          <h3>Direito Civil</h3>
+          <p>Contratos, indenizações, cobranças e responsabilidade civil, com condução técnica do início ao fim.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+          <h3>Direito Trabalhista</h3>
+          <p>Defesa de trabalhadores e empresas em rescisões, verbas, acordos e ações trabalhistas.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <h3>Direito de Família</h3>
+          <p>Divórcio, guarda, pensão e inventário, conduzidos com discrição e sensibilidade.</p>
+        </div>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="container sobre-grid">
+    <div class="sobre-photo">
+      <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Sua foto aqui
+    </div>
+    <div class="sobre-text">
+      <span class="kicker">Sobre</span>
+      <h2>Compromisso com cada causa</h2>
+      <p>Gabriel Gil de Castro é corretor em Barra Mansa com foco em conectar pessoas aos imóveis ideais. Com experiência e dedicação, trabalha para tornar a compra, venda ou aluguel acessível e tranquilo.
+
+Acredita que cada propriedade tem uma história e cada cliente merece atenção especial. Está pronto para guiá-lo nesta importante decisão imobiliária em Barra Mansa.</p>
+      <a href="https://wa.me/555524999352877" target="_blank" rel="noopener" class="btn btn-wa"><svg width="20" height="20" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> Falar no WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Contato</span>
+      <h2>Agende sua consulta</h2>
+    </div>
+    <div class="contato-grid">
+      <form class="contato-form" id="form-contato">
+        <label for="f-nome">Nome</label>
+        <input type="text" id="f-nome" name="nome" placeholder="Seu nome completo" required>
+        <label for="f-tel">Telefone / WhatsApp</label>
+        <input type="tel" id="f-tel" name="telefone" placeholder="(00) 00000-0000" required>
+        <label for="f-msg">Mensagem</label>
+        <textarea id="f-msg" name="mensagem" placeholder="Descreva brevemente o seu caso" required></textarea>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Enviar pelo WhatsApp</button>
+      </form>
+      <div class="contato-info">
+        <div class="info-item">
+          <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="#B8943A" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></div>
+          <div><strong>Telefone / WhatsApp</strong><span>24999352877</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M3 11l9-8 9 8"/><path d="M5 9v12h14V9"/><path d="M9 21v-6h6v6"/></svg></div>
+          <div><strong>Endereço</strong><span>Av. Joaquim Leite, 504 — Barra Mansa</span></div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B8943A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div><strong>Instagram</strong><span><a href="https://instagram.com/" target="_blank" rel="noopener">@</a></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="logo">Gregorio Advocacia<span>.</span></div>
+    <div>Av. Joaquim Leite, 504 — Barra Mansa &nbsp;·&nbsp; 24999352877</div>
+    <div>© 2026 Gregorio Advocacia. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/555524999352877" target="_blank" rel="noopener" class="wa-float" aria-label="Falar no WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.074-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+  document.getElementById('form-contato').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = document.getElementById('f-nome').value;
+    var tel = document.getElementById('f-tel').value;
+    var msg = document.getElementById('f-msg').value;
+    var texto = 'Olá! Me chamo ' + nome + ' (tel: ' + tel + '). ' + msg;
+    window.open('https://wa.me/555524999352877?text=' + encodeURIComponent(texto), '_blank');
+  });
+</script>
+
+</body>
+</html>
